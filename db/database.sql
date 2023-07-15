@@ -1,4 +1,6 @@
 
+DROP DATABASE IF EXISTS `Campus`;
+
 CREATE DATABASE `Campus`;
 
 USE `campus`;
@@ -62,6 +64,7 @@ CREATE TABLE `usuarios_lugares` (
 
 -- Equipos en los lugares
 
+
 CREATE TABLE `equipos`(
     `id` int(11) PRIMARY KEY AUTO_INCREMENT,
     `nombre` VARCHAR(150) NOT NULL,
@@ -71,13 +74,47 @@ CREATE TABLE `equipos`(
     FOREIGN KEY (`lugar_id`) REFERENCES `lugares` (`id`)
 );
 
-CREATE TABLE `accesorios` (
+CREATE TABLE `accesorio_teclado` (
     `id` int(11) PRIMARY KEY AUTO_INCREMENT,
-    `nombre` VARCHAR(150) NOT NULL,
-    `descripcion` VARCHAR(255) NOT NULL,
-    `equipos_id` int(11) NOT NULL UNIQUE,
-    CONSTRAINT `fk_equipos`
-    FOREIGN KEY (`equipos_id`) REFERENCES `equipos` (`id`)
+    `marca` VARCHAR(150) NOT NULL,
+    `descripcion` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `accesorio_mouse` (
+    `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+    `marca` VARCHAR(150) NOT NULL,
+    `descripcion` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `accesorio_diademas` (
+    `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+    `marca` VARCHAR(150) NOT NULL,
+    `descripcion` VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE `equipos_acc_lugar` (
+    `equipos_id` int(11) NOT NULL,
+    `accesorios_mouse_id` int(11) NOT NULL,
+    `accesorios_teclado_id` int(11) NOT NULL,
+    `accesorios_diademas_id` INT(11) NOT NULL,
+   
+
+    PRIMARY KEY (`equipos_id`, `accesorios_teclado_id` ,`accesorios_mouse_id`, `accesorios_diademas_id`),
+
+
+
+    CONSTRAINT `fk_acc_equipo`
+    FOREIGN KEY (`equipos_id`) REFERENCES `equipos` (`id`),
+
+    CONSTRAINT `fk_acc_mouse`
+    FOREIGN KEY (`accesorios_mouse_id`) REFERENCES `accesorio_mouse` (`id`),
+
+    CONSTRAINT `fk_acc_teclado`
+    FOREIGN KEY (`accesorios_teclado_id`) REFERENCES `accesorio_teclado` (`id`),
+
+    CONSTRAINT `fk_acc_diademas`
+    FOREIGN KEY (`accesorios_diademas_id`) REFERENCES `accesorio_diademas` (`id`)
 );
 
 -- Insidencias
