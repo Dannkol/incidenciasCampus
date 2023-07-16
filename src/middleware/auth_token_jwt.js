@@ -14,6 +14,7 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, jwtconfig.secret_key, (err, user) => {
     if (err) {
+      console.log(err);
       return res.status(403).json({ error: "Token de autorización inválido" });
     }
 

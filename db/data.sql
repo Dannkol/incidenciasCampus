@@ -97,3 +97,9 @@ INSERT INTO usuarios(id,nombre,apellidos,password, `doc_usuario`,`tipoDocumento_
 
 INSERT INTO usuarios_lugares(lugares_id,usuarios_id) VALUES
 (1,1);
+
+INSERT INTO insidencias(id,nombre,descripcion,equipo_id,lugar_id,fecha,nivel_id,categoria_id) VALUES
+(1,'No enciende','El camper daniel  comento que el pc no encencia, una primera comprovacion muesta que es verdad',1,1,'2023-07-15',3,2);
+
+INSERT INTO historial_insidencia_usuarios(usuario_id,insidencia_id) VALUES
+(1,1);

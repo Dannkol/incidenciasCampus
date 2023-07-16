@@ -4,6 +4,7 @@ import express  from "express";
 import configureApp from "./src/config/express.js";
 import routes_auth from './src/routes/routes_auth.js';
 import routes_equipos from './src/routes/routes_equipos.js';
+import router_insidencias from "./src/routes/route_insidencias.js";
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ configureApp(app);
 // Definir las rutas
 app.use('/api',routes_auth);
 app.use('/api/equipos',routes_equipos);
+app.use('/api/insidencias',router_insidencias);
 
 
 
