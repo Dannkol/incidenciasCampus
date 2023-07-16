@@ -2,7 +2,8 @@ import dotenv  from "dotenv"
 import express  from "express";
 //Modulos propios
 import configureApp from "./src/config/express.js";
-import routes from './src/routes.js';
+import routes_auth from './src/routes/routes_auth.js';
+import routes_equipos from './src/routes/routes_equipos.js';
 
 dotenv.config()
 
@@ -13,7 +14,10 @@ configureApp(app);
 
 
 // Definir las rutas
-app.use(routes);
+app.use('/api',routes_auth);
+app.use('/api/equipos',routes_equipos);
+
+
 
 // Variables de entorno
 const PORT = process.env.PORT || 8080;
