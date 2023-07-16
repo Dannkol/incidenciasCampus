@@ -4,6 +4,8 @@ import express from "express";
 
 import { getAllEquipos , getAllEquiposMarcas } from "../controllers/equiposcontroller.js";
 
+import { getAllDiademas , updateDiademas , createDiadema , deleteDiadema } from "../controllers/diademascontroller.js";
+
 // Middlewareq
 import authenticateToken from "../middleware/auth_token_jwt.js";
 import marcaDTO from "../middleware/DTO_marca.js";
@@ -44,6 +46,51 @@ router.get("/", authenticateToken , getAllEquipos)
 //  }
 
 router.get("/:marca", authenticateToken ,marcaDTO , getAllEquiposMarcas)
+
+
+
+/**
+ * get all accesorios mouse
+ */
+
+router.get("/accesorio/mouse", authenticateToken, getAllDiademas)
+
+/**
+ * get update mouse
+ * 
+ * rcibe 
+ * 
+ *{
+ * 
+ *  "marca": "Logitech",
+ *  "descripcion": "diademas Logitech",  
+ *  "serial": "12345s"
+ *
+ *}
+ *
+ * y un id por parametro
+ *
+ * devuelve
+ * 
+ * {
+ *   "messeger": "Update diademas",
+ *   "data": {
+ *       "marca": "Logitech",
+ *       "descripcion": "diademas Logitech",
+ *       "serial": "12345s"
+ *   }
+ * }
+ * 
+ */
+router.put("/accesorio/mouse/:id", authenticateToken, updateDiademas)
+
+
+router.post("/accesorio/mouse", authenticateToken, createDiadema)
+
+
+
+router.delete("/accesorio/mouse/:id", authenticateToken, deleteDiadema )
+
 
 
 export default router;
