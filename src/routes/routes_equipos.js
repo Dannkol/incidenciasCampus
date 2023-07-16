@@ -2,7 +2,7 @@ import express from "express";
 
 // Controllers
 
-import { getAllEquipos , getAllEquiposMarcas } from "../controllers/equiposcontroller.js";
+import { getAllEquipos , getAllEquiposMarcas, createEquipo } from "../controllers/equiposcontroller.js";
 
 import { getAllDiademas , updateDiademas , createDiadema , deleteDiadema } from "../controllers/diademascontroller.js";
 
@@ -60,6 +60,28 @@ router.get("/", authenticateToken , getAllEquipos)
 //  }
 
 router.get("/:marca", authenticateToken ,marcaDTO , getAllEquiposMarcas)
+
+
+// crear un nuevo equipo
+/** 
+ * {
+ *
+ *  nombre_equipo : 'cp-158',
+ *  descripcion : 'Perfecto estado',
+ *  mouse : 1,
+ *  teclado : 2,
+ *  diademas : 3,
+ *  lugar : 1,
+ *
+ * }
+ * 
+ * devuelve
+ * 
+ * 
+ * 
+ */
+
+router.post("/create", authenticateToken, createEquipo)
 
 
 // LOS ACCESORIOS RECIBEN LOS MISMOS PARAMETROS

@@ -30,4 +30,20 @@ const getAllEquiposMarcas = async (req, res) => {
   }
 };
 
-export { getAllEquipos , getAllEquiposMarcas } ;
+const createEquipo = async (req, res) => {
+  try {
+    
+    const query = await equipos.createEquipo(req.body);
+
+    res.json({ query });
+    
+  } catch (error) {
+    res.status(404).json({ 
+      "message" : `Error creating ${error.sqlState}` 
+    });
+    console.log(error);
+
+  }
+}
+
+export { getAllEquipos , getAllEquiposMarcas , createEquipo } ;
