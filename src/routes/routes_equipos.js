@@ -6,6 +6,7 @@ import { getAllEquipos , getAllEquiposMarcas } from "../controllers/equiposcontr
 
 // Middlewareq
 import authenticateToken from "../middleware/auth_token_jwt.js";
+import marcaDTO from "../middleware/DTO_marca.js";
 
 
 const router = express.Router();
@@ -42,7 +43,7 @@ router.get("/", authenticateToken , getAllEquipos)
 //     ]
 //  }
 
-router.get("/:marca", authenticateToken , getAllEquiposMarcas)
+router.get("/:marca", authenticateToken ,marcaDTO , getAllEquiposMarcas)
 
 
 export default router;
