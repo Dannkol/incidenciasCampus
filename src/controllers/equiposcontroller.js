@@ -15,4 +15,19 @@ const getAllEquipos = async (req, res) => {
   }
 };
 
-export { getAllEquipos } ;
+const getAllEquiposMarcas = async (req, res) => {
+
+  try {
+
+    const query = await equipos.getAllEquiposMarcas(Object.values(req.params));
+
+
+    res.json({ query });
+    
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export { getAllEquipos , getAllEquiposMarcas } ;
