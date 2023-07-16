@@ -13,6 +13,13 @@ import {
     deleteMouse
 } from "../controllers/mousecontroller.js"
 
+import {
+    getAllTeclado,
+    createTeclado,
+    updateTeclado,
+    deleteTeclado
+} from "../controllers/tecladocontroller.js"
+
 // Middlewareq
 import authenticateToken from "../middleware/auth_token_jwt.js";
 import marcaDTO from "../middleware/DTO_marca.js";
@@ -116,5 +123,16 @@ router.put("/accesorio/mouse/:id", authenticateToken, updateMouse)
 router.post("/accesorio/mouse", authenticateToken, createMouse)
 
 router.delete("/accesorio/mouse/:id", authenticateToken, deleteMouse)
+
+
+// CRUD teclado
+// recibe los mismos parametros que las diademas
+router.get("/accesorio/teclado", authenticateToken, getAllTeclado)
+
+router.put("/accesorio/teclado/:id", authenticateToken, updateTeclado)
+
+router.post("/accesorio/teclado", authenticateToken, createTeclado)
+
+router.delete("/accesorio/teclado/:id", authenticateToken, deleteTeclado)
 
 export default router;
