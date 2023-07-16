@@ -14,6 +14,7 @@ Campuslunds cuenta con 4 areas generales en las cuales se encuentran los equipos
 * El sistema debe permitir asignar computadores, teclados, mouse y diademas de sonido en cada uno de los salones (lugares). 
 
 * El sistema debe permitir crear trainers (ld, nombre, email personal, email corporative, telefona movil, telefon residencia, telefano empress, telefono mavil empresarial)
+
 # Diagrama MER
 
 ![Diagrama](https://github.com/Dannkol/incidenciasCampus/blob/main/doc/diagrama_mer.JPG?raw=true)

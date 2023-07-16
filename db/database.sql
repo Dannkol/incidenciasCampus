@@ -23,6 +23,7 @@ CREATE TABLE `usuarios` (
     `nombre` VARCHAR(150) NOT NULL,
     `apellidos` VARCHAR(150) NOT NULL,
     `password` VARCHAR(150) NOT NULL,
+    `doc_usuario` BIGINT NOT NULL UNIQUE,
     `tipoDocumento_id` int(11) NOT NULL,
     `infoEmpresarial_id` int(11) NOT NULL UNIQUE,
     CONSTRAINT `fk_tipoDocumento` 
@@ -44,10 +45,21 @@ CREATE TABLE `lugares` (
 CREATE TABLE `areas` (
     `id` int(11) PRIMARY KEY AUTO_INCREMENT,
     `nombre` VARCHAR(150) NOT NULL,
-    `descripcion` VARCHAR(255) NOT NULL,
-    `lugar_id` int(11) NOT NULl UNIQUE,
-    CONSTRAINT `fk_lugar`
-    FOREIGN KEY (`lugar_id`) REFERENCES `lugares` (`id`)
+    `descripcion` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `lugares_areas` (
+
+    `lugar_id` INT(11) NOT NULL,
+    `area_id` INT(11) NOT NULL,
+
+    PRIMARY KEY (`lugar_id`, `area_id`),
+
+    CONSTRAINT `fk_lugares_areas`
+    FOREIGN KEY (`lugar_id`) REFERENCES `lugares` (`id`),
+
+    CONSTRAINT `fk_areas_lugares`
+    FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`)
 );
 
 -- un usuario puede estar asignado a muchos lugares y un lugar a muchos usuarios
@@ -66,10 +78,11 @@ CREATE TABLE `usuarios_lugares` (
 
 
 CREATE TABLE `equipos`(
-    `id` int(11) PRIMARY KEY AUTO_INCREMENT,
-    `nombre` VARCHAR(150) NOT NULL,
+    `id` int(11) AUTO_INCREMENT UNIQUE,
+    `nombre` VARCHAR(150) NOT NULL UNIQUE,
     `descripcion` VARCHAR(255) NOT NULL,
-    `lugar_id` int(11) NOT NULl UNIQUE,
+    `lugar_id` int(11) NOT NULl ,
+    PRIMARY KEY (`id`, `lugar_id`),
     CONSTRAINT `fk_lugar_equipo`
     FOREIGN KEY (`lugar_id`) REFERENCES `lugares` (`id`)
 );
@@ -95,9 +108,9 @@ CREATE TABLE `accesorio_diademas` (
 
 CREATE TABLE `equipos_acc_lugar` (
     `equipos_id` int(11) NOT NULL,
-    `accesorios_mouse_id` int(11) NOT NULL,
-    `accesorios_teclado_id` int(11) NOT NULL,
-    `accesorios_diademas_id` INT(11) NOT NULL,
+    `accesorios_mouse_id` int(11) NOT NULL UNIQUE,
+    `accesorios_teclado_id` int(11) NOT NULL UNIQUE,
+    `accesorios_diademas_id` INT(11) NOT NULL UNIQUE,
    
 
     PRIMARY KEY (`equipos_id`, `accesorios_teclado_id` ,`accesorios_mouse_id`, `accesorios_diademas_id`),
