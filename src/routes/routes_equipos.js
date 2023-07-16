@@ -6,6 +6,13 @@ import { getAllEquipos , getAllEquiposMarcas } from "../controllers/equiposcontr
 
 import { getAllDiademas , updateDiademas , createDiadema , deleteDiadema } from "../controllers/diademascontroller.js";
 
+import {
+    getAllMouse,
+    createMouse,
+    updateMouse,
+    deleteMouse
+} from "../controllers/mousecontroller.js"
+
 // Middlewareq
 import authenticateToken from "../middleware/auth_token_jwt.js";
 import marcaDTO from "../middleware/DTO_marca.js";
@@ -48,15 +55,16 @@ router.get("/", authenticateToken , getAllEquipos)
 router.get("/:marca", authenticateToken ,marcaDTO , getAllEquiposMarcas)
 
 
+// LOS ACCESORIOS RECIBEN LOS MISMOS PARAMETROS
 
 /**
  * get all accesorios mouse
  */
 
-router.get("/accesorio/mouse", authenticateToken, getAllDiademas)
+router.get("/accesorio/diademas", authenticateToken, getAllDiademas)
 
 /**
- * get update mouse
+ * put update mouse
  * 
  * rcibe 
  * 
@@ -82,15 +90,31 @@ router.get("/accesorio/mouse", authenticateToken, getAllDiademas)
  * }
  * 
  */
-router.put("/accesorio/mouse/:id", authenticateToken, updateDiademas)
+router.put("/accesorio/diademas/:id", authenticateToken, updateDiademas)
+
+// post create mouse
+// {
+//     "marca": "Acer",
+//     "descripcion": "diademas Acer",
+//     "serial": "12as26"
+// }
+
+router.post("/accesorio/diademas", authenticateToken, createDiadema)
 
 
-router.post("/accesorio/mouse", authenticateToken, createDiadema)
+// delate mouse
+// id
 
+router.delete("/accesorio/diademas/:id", authenticateToken, deleteDiadema )
 
+// CRUD mouse
+// recibe los mismos parametros que las diademas
+router.get("/accesorio/mouse", authenticateToken, getAllMouse)
 
-router.delete("/accesorio/mouse/:id", authenticateToken, deleteDiadema )
+router.put("/accesorio/mouse/:id", authenticateToken, updateMouse)
 
+router.post("/accesorio/mouse", authenticateToken, createMouse)
 
+router.delete("/accesorio/mouse/:id", authenticateToken, deleteMouse)
 
 export default router;
